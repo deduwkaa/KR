@@ -1,0 +1,30 @@
+﻿<div class="container">
+    @if (TempData["AlertMessage"] != null)
+{
+    <div class="h-100 d-flex align-items-center justify-content-center p-3 mb-2 bg-warning text-dark">
+            @TempData["AlertMessage"]
+    </div>    
+}
+<div class="row m-3">
+    <p>
+        <br>
+        <b>Title:</b> @ViewBag.product.Title
+        <br>
+        <b>Price:</b> @ViewBag.product.Price
+        <br>
+        <b>Description:</b> @ViewBag.product.Description
+        <br>
+        <b>Product Number:</b> @ViewBag.product.Id
+     </p>
+</div>
+
+<div class="row m-3">
+    <form action="/product/one/order/" method="post">
+    <input type="hidden" id="productId" name="productId" value="@ViewBag.product.Id"/>
+    <label for="quantity">Quantity</label>
+    <input type="number" id="quantity" name="quantity" min="1"/>
+    <input class="btn btn-primary me-2" type="submit" value="Order"/>
+    </form>
+</div>
+</div>
+</div>
