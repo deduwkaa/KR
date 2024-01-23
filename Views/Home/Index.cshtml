@@ -1,0 +1,46 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col p-3 mb-2 bg-info text-white">
+        <h3>Welcome, @ViewBag.user.Name!</h3>
+            <h4>Balance:</h4>
+            <h3 class="text-danger">@ViewBag.user.Balance</h3>
+            <form action="user/addToBalance" method="post">
+                <div class="col-6 mt-5">
+                    <label for="amount">Add To The Balance:</label>
+                    <input class="form-control" type="number" step="0.001" id="amount" name="amount" min="0.001"/>
+                </div>
+                <br>
+                <div class="col-auto">
+                    <input class="btn btn-primary mb-3" type="submit" value="Submit"/>
+                </div>
+            </form>
+        </div>
+        <div class="col p-3 mb-2 bg-secondary text-white">
+        @if (ViewBag.orders.Count > 0)
+        {
+            <h4>Orders:</h4> 
+            <table class="table table-light table-striped">
+                <tr>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Total Sum</th>
+                    <th scope="col">Order Info</th>
+                </tr>
+                @foreach (var order in ViewBag.orders)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.Status</td>
+                        <td>@order.TotalSum</td>
+                        <td>
+                            <form action="/order/info/orderId=@order.Id" method="get">
+                            <input class="btn btn-primary mb-3" type="submit" value="Info"/>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </table>
+            }
+        </div>
+    </div>
+</div>
